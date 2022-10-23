@@ -1,27 +1,46 @@
-<h2><%= @list.name %></h2>
+<div class="navbar-lewagon d-flex align-items-center">
+  <h2>Movie List - <%= @list.name %></h2>
+</div>
 
 <%# Want to display the movies in this list %>
 <%# as movies don't belong to lists, how can I access %>
 <%# give the list an instance variable and get all the movies %>
 <%# Why aren't list.movies showing? %>
+<div class="container">
+  <ul class="list-group list-margin">
+    <% @list.movies.each do |movie| %>
+      <li class="list-group-item">
+        <div class="card" style="width: 18rem;">
+          <img src="<%=movie.poster_url%>" class="card-img-top" alt="<%=movie.title%>">
+          <div class="card-body">
+            <h5 class="card-title"><b><%=movie.title%></b></h5>
+            <p class="card-text"><%= movie.overview %></p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
 
-<ul>
-  <% @list.movies.each do |movie| %>
-    <li><%= movie.title %></li>
-  <% end %>
-</ul>
+  <h3>Add New Bookmark</h3>
 
-<h3>Add New Bookmark</h3>
-
-<%= simple_form_for [@list, @bookmark] do |f| %>
-  <%= f.input :comment %>
-  <%# f.association will get the movie_id %>
-  <%# this works because bookmark belongs_to movie %>
-  <%# takes movie_id along with it in params %>
-  <%= f.association :movie %>
-  <%= f.submit %>
-<% end %>
+  <div class="form">
+    <%= simple_form_for [@list, @bookmark] do |f| %>
+      <%= f.input :comment %>
+      <%# f.association will get the movie_id %>
+      <%# this works because bookmark belongs_to movie %>
+      <%# takes movie_id along with it in params %>
+      <%= f.association :movie %>
+      <%= f.submit %>
+    <% end %>
+  </div>
 
 
-<p><%= link_to "Add movie to list", new_list_bookmark_path(@list) %></p>
-<p><%= link_to "List index", lists_path %></p>
+  <%# <p><%= link_to "Add movie to list", new_list_bookmark_path(@list) %></p>
+
+  <p>
+    <%= link_to "Delete list", list_path(@list),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  </p>
+  <p><%= link_to "List index", lists_path %></p>
+</div>

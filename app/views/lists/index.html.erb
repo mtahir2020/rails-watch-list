@@ -1,14 +1,43 @@
-<h1>Movie Lists</h1>
+<div class="navbar-lewagon d-flex align-items-center border-bottom border-2">
+  <div class="d-flex align-items-center ms-2">
+    <h1 class="me-2">MyCinema</h1>
+    <i class="fa-sharp fa-solid fa-film fa-2xl"></i>
+  </div>
+  <button type="button" class="btn btn-danger btn-custom me-2">My Lists</button>
+</div>
 
-<ul>
-  <% @lists.each do |list| %>
-  <li> <%= link_to list.name, list_path(list) %> </li>
+<div class="banner">
+</div>
+
+<%# https://www.w3schools.com/howto/howto_css_image_overlay_title.asp %>
+<%# Add overlay that changes when hover %>
+<div class="container">
+  <div class="d-flex justify-content-center align-items-center flex-column">
+    <h2 class="pt-3">My Lists</h2>
+    <div class="row">
+      <% @lists.each do |list| %>
+        <div class="col-md-6">
+          <div class="card" style="width: 18rem;">
+            <img src="<%=list.image_url%>" class="card-img-top" alt="<%=list.name%>">
+              <div class="card-body">
+                <p class="card-text"><%= link_to list.name, list_path(list) %></p>
+              </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+
+  <h2>Create Movie List</h2>
+
+  <div class="form">
+  <%= simple_form_for(@list) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :image_url %>
+    <%= f.submit %>
   <% end %>
-</ul>
+  </div>
 
-<h2>Add a list</h2>
-
-<%= simple_form_for(@list) do |f| %>
-  <%= f.input :name %>
-  <%= f.submit %>
-<% end %>
+  <%= link_to "See bookmarks", bookmarks_path%>
+</div>

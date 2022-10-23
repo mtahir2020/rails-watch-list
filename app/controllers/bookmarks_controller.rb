@@ -5,6 +5,10 @@ class BookmarksController < ApplicationController
   #   @list = List.find(params[:list_id])
   # end
 
+  def index
+    @bookmarks = Bookmark.all
+  end
+
   def create
     @bookmark = Bookmark.new(bookmark_params)
     # Need @list id as the path is for a specific list
@@ -14,6 +18,12 @@ class BookmarksController < ApplicationController
       redirect_to list_path(@list)
     end
     # if/else
+  end
+
+  def destroy
+    @bookmark = Bookmark.find(params[:id])
+    @bookmark.destroy
+    redirect_to bookmarks_path
   end
 
   private
