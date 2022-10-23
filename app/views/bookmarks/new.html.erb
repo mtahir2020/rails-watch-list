@@ -1,5 +1,8 @@
 <%= simple_form_for [@list, @bookmark] do |f| %>
   <%= f.input :comment %>
+  <%# f.association will get the movie_id %>
+  <%# this works because bookmark belongs_to movie %>
+  <%# takes movie_id along with it in params %>
   <%= f.association :movie %>
   <%= f.submit %>
 <% end %>

@@ -1,1 +1,27 @@
-@list.name
+<h2><%= @list.name %></h2>
+
+<%# Want to display the movies in this list %>
+<%# as movies don't belong to lists, how can I access %>
+<%# give the list an instance variable and get all the movies %>
+<%# Why aren't list.movies showing? %>
+
+<ul>
+  <% @list.movies.each do |movie| %>
+    <li><%= movie.title %></li>
+  <% end %>
+</ul>
+
+<h3>Add New Bookmark</h3>
+
+<%= simple_form_for [@list, @bookmark] do |f| %>
+  <%= f.input :comment %>
+  <%# f.association will get the movie_id %>
+  <%# this works because bookmark belongs_to movie %>
+  <%# takes movie_id along with it in params %>
+  <%= f.association :movie %>
+  <%= f.submit %>
+<% end %>
+
+
+<p><%= link_to "Add movie to list", new_list_bookmark_path(@list) %></p>
+<p><%= link_to "List index", lists_path %></p>
