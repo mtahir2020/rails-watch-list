@@ -1,13 +1,46 @@
-<ul>
-  <% @bookmarks.each do |bookmark| %>
-    <li>
-      <p>Movie: <%= bookmark.movie.title %></p>
-      <p>List: <%= bookmark.list.name %></p>
-      <p>Comment: <%= bookmark.comment %></p>
-      <p><%= link_to "delete bookmark", bookmark_path(bookmark),
-      data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}  %></p>
-    </li>
-  <% end %>
-</ul>
+<div class="container">
 
-<%= link_to "List Index", lists_path %>
+  <h2>My Bookmarks</h2>
+
+  <ul>
+    <% @bookmarks.each do |bookmark| %>
+      <div class="card mb-3" style="max-width: 840px;">
+        <div class="row g-0">
+          <div class="col-md-4 d-flex align-items-center">
+            <img src="<%=bookmark.movie.poster_url%>" class="img-fluid rounded-start" alt="<%=bookmark.movie.title%>">
+          </div>
+          <div class="col-md-8 d-flex align-items-center">
+            <div class="card-body">
+              <h5 class="card-title text-black"><%= bookmark.movie.title %></h5>
+              <p class="card-text text-black"><b>Comment:</b> <%= bookmark.comment %></p>
+              <%# Why is the link coming out as '.' %>
+              <p class="card-text"><small class="text-muted">List: <%= link_to bookmark.list.name, lists_path(bookmark.list_id) %></small></p>
+              <p><%= link_to "Delete bookmark", bookmark_path(bookmark),
+              data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}  %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </ul>
+
+  <%# How to add bookmark on it's own page, not associated to a list %>
+  
+  <%= simple_form_for @bookmark do |f| %>
+    <%= f.input :comment %>
+    <%# f.association will get the movie_id %>
+    <%# this works because bookmark belongs_to movie %>
+    <%# takes movie_id along with it in params %>
+    <%= f.association :list %>
+    <%= f.association :movie %>
+    <%= f.submit %>
+  <% end %>
+
+
+
+
+
+  <%= link_to "List Index", lists_path %>
+</div>
+
+<%# How to add a class when using_link_to %>

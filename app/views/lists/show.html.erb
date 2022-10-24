@@ -1,12 +1,6 @@
-<div class="navbar-lewagon d-flex align-items-center">
-  <h2>Movie List - <%= @list.name %></h2>
-</div>
 
-<%# Want to display the movies in this list %>
-<%# as movies don't belong to lists, how can I access %>
-<%# give the list an instance variable and get all the movies %>
-<%# Why aren't list.movies showing? %>
 <div class="container">
+  <h2>Movie List - <%= @list.name %></h2>
   <ul class="list-group list-margin">
     <% @list.movies.each do |movie| %>
       <li class="list-group-item">
@@ -14,8 +8,8 @@
           <img src="<%=movie.poster_url%>" class="card-img-top" alt="<%=movie.title%>">
           <div class="card-body">
             <h5 class="card-title"><b><%=movie.title%></b></h5>
-            <p class="card-text"><%= movie.overview %></p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <p class="card-text"><%= movie.overview[0, 60]...%></p>
+            <a href="#" class="btn btn-primary">Read More</a>
           </div>
         </div>
       </li>
@@ -24,7 +18,7 @@
 
   <h3>Add New Bookmark</h3>
 
-  <div class="form">
+  <div class="form text-black">
     <%= simple_form_for [@list, @bookmark] do |f| %>
       <%= f.input :comment %>
       <%# f.association will get the movie_id %>

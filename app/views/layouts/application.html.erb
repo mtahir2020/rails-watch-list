@@ -11,7 +11,14 @@
     <script src="https://kit.fontawesome.com/2a23fa00c4.js" crossorigin="anonymous"></script>
   </head>
 
-  <body>
+  <body class="background-colour text-white">
+    <div class="navbar-lewagon d-flex align-items-center border-bottom border-2">
+    <div class="d-flex align-items-center ms-2">
+      <h1 class="me-2 text-white">MyCinema</h1>
+      <i class="fa-sharp fa-solid fa-film fa-2xl text-white"></i>
+    </div>
+    <button type="button" class="btn btn-danger btn-custom me-2 white"><%= link_to "Bookmarks", bookmarks_path %></button>
+  </div>
     <%= yield %>
   </body>
 </html>

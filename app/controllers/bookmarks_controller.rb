@@ -1,12 +1,14 @@
 class BookmarksController < ApplicationController
   # def new
   #   @bookmark = Bookmark.new
-  #   # Find @list id as the path is for a specific list
-  #   @list = List.find(params[:list_id])
+  # #   # Find @list id as the path is for a specific list
+  # #   @list = List.find(params[:list_id])
   # end
 
   def index
     @bookmarks = Bookmark.all
+    # @list = List.find(params[:list_id])
+    @bookmark = Bookmark.new
   end
 
   def create
