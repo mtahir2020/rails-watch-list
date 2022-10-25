@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import MoreController from "./more_controller"
 application.register("more", MoreController)
+
+import StarRatingController from "./star_rating_controller"
+application.register("star-rating", StarRatingController)

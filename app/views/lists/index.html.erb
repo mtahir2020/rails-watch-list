@@ -11,19 +11,23 @@
       <% @lists.each do |list| %>
         <div class="col-lg-6 d-flex justify-content-center">
           <div class="card" style="width: 18rem;">
-            <img src="<%=list.image_url%>" class="card-img-top" alt="<%=list.name%>">
+            <div class="design position-relative">
+              <img src="<%=list.image_url%>" class="card-img-top" alt="<%=list.name%>">
+              <div class="overlay position-absolute"></div>
+            </div>
               <div class="card-body">
                 <p class="card-text fs-5"><%= link_to list.name, list_path(list) %></p>
               </div>
           </div>
         </div>
+
       <% end %>
     </div>
   </div>
 
 
   <div class="d-flex flex-column align-items-center">
-    <h2 class="text-white">Create Movie List</h2>
+    <h2 class="text-white">Create New List</h2>
 
     <div class="form text-black">
     <%= simple_form_for(@list) do |f| %>
@@ -37,11 +41,7 @@
   </div>
 </div>
 
-
-<%# 2. Override bootstrap, where and how %>
 <%# 3. Bookmarks links rendering with a '.' and not a '/'%>
 <%# 4. On bookmarks page, add a new bookmark with no pre-existing list %>
 <%# 5. How to add a class when using_link_to %>
-<%# 7. Stimulus controller "more" not connecting %>
-<%# 8. Why is my string not reading backwards from -1 %>
 <%# 9. Implement Reviews pathways  %>

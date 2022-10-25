@@ -1,7 +1,9 @@
 <div class="form text-black">
   <%= simple_form_for [@list, @review] do |f| %>
     <%= f.input :comment %>
-    <%= f.input :rating %>
+    <%= f.input :rating, collection: (1..5).to_a, label: "Rate this list", input_html: {data: {controller: "star-rating"}} %>
     <%= f.submit %>
   <% end %>
 </div>
+
+<%= link_to "Back to list", list_path(@list) %>

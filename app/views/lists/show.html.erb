@@ -1,21 +1,14 @@
 <div class="container">
   <h2>Movie List - <%= @list.name %></h2>
 
-    <% @list.movies.each do |movie| %>
-
-  <% overview_string = movie.overview.split %>
-  <% overview_string.length / 2 %>
-  <% new_string = overview_string.each_slice((overview_string.size / 2.0).round).to_a%>
-  <% first_half = new_string[0].join(' ') %>
-  <% second_half = new_string[1].join(' ') %>
-
+  <% @list.movies.each do |movie| %>
     <div class="card" data-controller="more" style="width: 20rem;">
       <img src="<%=movie.poster_url%>" class="card-img-top" alt="<%=movie.title%>">
         <div class="card-body">
             <h5 class="card-title text-black"><b><%=movie.title%></b></h5>
-            <p class="card-text text-black"><%= first_half %>
+            <p class="card-text text-black"><%= string_half(movie.overview)[0] %>
               <span id="dots" data-more-target="dots">...</span>
-              <span id="more" data-more-target="span"><%= second_half%></span>
+              <span id="more" data-more-target="span"><%= string_half(movie.overview)[1]%></span>
             </p>
           <a href="#" data-action="click->more#readMore"
           data-more-target="button" class="btn btn-primary">Read More</a>
@@ -23,20 +16,19 @@
     </div>
   <% end %>
 
-<h2>Reviews!</h2>
-<ul>
+<hr>
+<h2 class="mb-3">List Reviews</h2>
 
-  <% @reviews.each do |review| %>
-   <li> <%= review.comment %>
-    Rating: <%= review.rating %>
-    </li>
+  <% @list.reviews.each do |review| %>
+    <div class="border mb-3 w-75">
+      <h4 class="border p-2"><b>Rating:</b> <%= review.rating %></h4>
+      <p class="border p-2"><%= review.comment %></p>
+    </div>
   <% end %>
-</ul>
 
 
 
-
-
+<hr>
   <div>
   <h3>Add New Bookmark</h3>
 
