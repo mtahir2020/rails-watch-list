@@ -17,7 +17,9 @@
       <h1 class="me-2 text-white">MyCinema</h1>
       <i class="fa-sharp fa-solid fa-film fa-2xl text-white"></i>
     </div>
-    <button type="button" class="btn btn-danger btn-custom me-2 white"><%= link_to "Bookmarks", bookmarks_path %></button>
+    <button type="button" class="btn btn-warning me-2">
+      <a class="red" href="<%= bookmarks_path %>">Bookmarks</a>
+    </button>
   </div>
     <%= yield %>
   </body>

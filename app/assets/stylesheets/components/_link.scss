@@ -1,11 +1,12 @@
 a {
   text-decoration: none;
-}
-
-a .red {
   color: #FD0070;
 }
 
-a.white {
+button a {
   color: white;
+}
+
+button a:hover {
+  color: lightgrey;
 }
