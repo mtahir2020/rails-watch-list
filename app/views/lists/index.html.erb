@@ -9,7 +9,7 @@
     <h2 class="pt-1 mb-4 text-white">My Movie Lists</h2>
     <div class="row gy-5">
       <% @lists.each do |list| %>
-        <div class="col-md-6">
+        <div class="col-lg-6 d-flex justify-content-center">
           <div class="card" style="width: 18rem;">
             <img src="<%=list.image_url%>" class="card-img-top" alt="<%=list.name%>">
               <div class="card-body">
@@ -38,12 +38,10 @@
 </div>
 
 
-<%# 1.  Get 'lists' grid in the center %>
 <%# 2. Override bootstrap, where and how %>
 <%# 3. Bookmarks links rendering with a '.' and not a '/'%>
 <%# 4. On bookmarks page, add a new bookmark with no pre-existing list %>
 <%# 5. How to add a class when using_link_to %>
-<%# 6. Show bookmark comment for a particular film %>
 <%# 7. Stimulus controller "more" not connecting %>
 <%# 8. Why is my string not reading backwards from -1 %>
 <%# 9. Implement Reviews pathways  %>

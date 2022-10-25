@@ -4,7 +4,6 @@ class ListsController < ApplicationController
     @list = List.new
   end
 
-
   # def new
   #   @list = List.new
   # end
@@ -28,6 +27,7 @@ class ListsController < ApplicationController
   def show
     @list = List.find(params[:id])
     @bookmark = Bookmark.new
+    @reviews = Review.all
   end
 
   private

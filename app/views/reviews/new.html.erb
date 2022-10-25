@@ -1,0 +1,7 @@
+<div class="form text-black">
+  <%= simple_form_for [@list, @review] do |f| %>
+    <%= f.input :comment %>
+    <%= f.input :rating %>
+    <%= f.submit %>
+  <% end %>
+</div>
