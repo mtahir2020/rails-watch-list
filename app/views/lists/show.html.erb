@@ -2,7 +2,7 @@
   <h2>Movie List - <%= @list.name %></h2>
 
   <% @list.movies.each do |movie| %>
-    <div class="card" data-controller="more" style="width: 20rem;">
+    <div class="card" data-controller="more" style="width: 30rem;">
       <img src="<%=movie.poster_url%>" class="card-img-top" alt="<%=movie.title%>">
         <div class="card-body">
             <h5 class="card-title text-black"><b><%=movie.title%></b></h5>
@@ -13,6 +13,14 @@
           <a href="#" data-action="click->more#readMore"
           data-more-target="button" class="btn btn-primary">Read More</a>
         </div>
+        <ul>
+        <% movie.bookmarks.each do |bookmark|%>
+        <li class="text-black"><i class="fa-solid fa-xl fa-quote-left"></i>
+          <p>"<%= bookmark.comment %>"</p>
+          <p><%= link_to "Delete bookmark", bookmark_path(bookmark),
+              data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}  %></p></li>
+        <% end %>
+        </ul>
     </div>
   <% end %>
 
