@@ -1,6 +1,11 @@
 class ListsController < ApplicationController
   def index
-    @lists = List.all
+    if params[:search]
+      @search = params[:search]
+      @lists = List.where("name LIKE ?", "%#{params[:search]}%")
+    else
+      @lists = List.all
+    end
     @list = List.new
   end
 
@@ -28,6 +33,7 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
     @bookmark = Bookmark.new
     @reviews = Review.all
+    @review = Review.new
   end
 
   private
