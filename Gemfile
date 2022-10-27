@@ -23,6 +23,8 @@ gem "turbo-rails"
 
 gem "dotenv-rails", groups: [:development, :test]
 
+gem "cloudinary"
+
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
