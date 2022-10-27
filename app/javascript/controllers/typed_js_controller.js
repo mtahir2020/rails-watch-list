@@ -6,7 +6,7 @@ export default class extends Controller {
   connect() {
     console.log('yep, typed connected');
     new Typed(this.element, {
-      strings: ["Create lists...", "Rate lists...", "MyCinema"],
+      strings: ["Create lists...", "Rate lists...", "Enjoy MyCinema"],
       typeSpeed: 40,
       loop: true
     })

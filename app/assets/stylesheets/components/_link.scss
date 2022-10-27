@@ -10,3 +10,14 @@ button a {
 button a:hover {
   color: white;
 }
+
+.card-text a {
+  color: black;
+  font-weight: 500;
+}
+
+.card-text a:hover{
+  letter-spacing: 0.2rem;
+  transition: 700ms;
+  font-weight: bold;
+}
