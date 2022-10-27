@@ -2,7 +2,7 @@ class ListsController < ApplicationController
   def index
     if params[:search]
       @search = params[:search]
-      @lists = List.where("name LIKE ?", "%#{params[:search]}%")
+      @lists = List.where("name ILIKE ?", "%#{params[:search]}%")
     else
       @lists = List.all
     end

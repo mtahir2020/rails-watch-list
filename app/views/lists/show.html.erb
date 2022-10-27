@@ -43,16 +43,17 @@
 
 <%# If/else to determine what's written if no movies.. %>
     <div class="w-75">
-      <% @list.reviews.each do |review| %>
-        <% if @list.reviews %>
-          <div class="border mb-3 w-75">
-            <h4 class="bg-light p-2 text-black"><b>Rating:</b> <%= review.rating %></h4>
-            <p class="p-2"><%= review.comment %></p>
-          </div>
-        <% else %>
+      <% if @list.reviews.any? == true %>
+        <% @list.reviews.each do |review| %>
+            <div class="border mb-3 w-75">
+              <h4 class="bg-light p-2 text-black"><b>Rating:</b> <%= review.rating %></h4>
+              <p class="p-2"><%= review.comment %></p>
+            </div>
+        <% end %>
+        <%# <% elsif @list.reviews == [] %>
+        <% elsif @list.reviews.any? == false %>
           <p class="p-2 text-white"> No reviews yet!</p>
         <% end %>
-      <% end %>
     </div>
 
       <div>
