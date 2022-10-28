@@ -24,6 +24,17 @@ class ListsController < ApplicationController
     end
   end
 
+  def edit
+    @list = List.find(params[:id])
+  end
+
+  def update
+    @list = List.find(params[:id])
+    @list.update(list_params)
+    redirect_to list_path(@list)
+  end
+
+
   def destroy
     @list = List.find(params[:id])
     @list.destroy
@@ -40,7 +51,12 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:name, :image_url)
+    # no longer using :image_url now that we have cloudinary
+    params.require(:list).permit(:name, :photo)
+  end
+
+  def list_params_edit
+    params.permit(:name)
   end
 
 end

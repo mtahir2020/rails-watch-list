@@ -1,6 +1,17 @@
 <div class="container">
   <h2 class="my-3 text-center">Movie List - <%= @list.name %></h2>
 
+  <% if @list.photo.attached? == true %>
+    <div class="text-center">
+      <%= cl_image_tag @list.photo.key, crop: :fill, height: 300, width: 450, class: "border" %>
+    </div>
+  <% end %>
+
+  <% if @list.movies.any? == true %>
+    <hr class="my-5">
+  <% end %>
+
+
   <div class="container">
     <div class="row">
       <% @list.movies.each do |movie| %>
@@ -92,5 +103,10 @@
     <%= link_to "Delete list", list_path(@list),
         data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
   </p>
+
+  <p>
+    <%= link_to "Edit list", edit_list_path(@list) %>
+  </p>
+
   <p><%= link_to "List index", lists_path %></p>
 </div>

@@ -12,7 +12,12 @@
         <div class="col-lg-6 d-flex justify-content-center">
           <div class="card" style="width: 18rem;">
             <div class="design position-relative">
-              <img src="<%=list.image_url%>" class="card-img-top" alt="<%=list.name%>">
+            <%# if statement for cloudinary image tag %>
+              <% if list.photo.attached? == true %>
+                <%= cl_image_tag list.photo.key, class: "card-img-top", alt: list.name %>
+              <% else %>
+                <img src="<%=list.image_url%>" class="card-img-top" alt="<%=list.name%>">
+              <% end %>
               <div class="overlay position-absolute"></div>
             </div>
               <div class="card-body" style="background-color: rgba(253, 1, 80, 0.8)">
@@ -32,15 +37,13 @@
     <div class="form text-black">
     <%= simple_form_for(@list) do |f| %>
       <%= f.input :name %>
-      <%= f.input :image_url %>
+      <%= f.input :photo, as: :file %>
       <%= f.submit %>
     <% end %>
     </div>
 
   </div>
 
-  <%= cl_image_tag("cld-sample-5",
-      width: 400, height: 300, crop: :fill) %>
 </div>
 
 <%# Search for movies, how to ignore case sensitivity %>
@@ -51,9 +54,14 @@
 
 <%# 4. On bookmarks page, add a new bookmark with no pre-existing list %>
 
-<%# 5. How to add a class when using_link_to %>
+<%# 5. How to add a class when using_link_to or img_tag%>
+<%# cl_image_tag @list.photo.key, crop: :fill, class: "border" %>
 
 <%# animate on scroll %>
 <%# tom select %>
 
 <%# style a simple form %>
+
+<%# Seeding images section makes no sense https://kitt.lewagon.com/camps/963/lectures/05-Rails%2F05-Rails-MC-with-images#source%>
+
+<%# Why getting variable size cards? %>
