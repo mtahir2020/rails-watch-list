@@ -1,0 +1,25 @@
+<div class="navbar-lewagon d-flex align-items-center border-bottom border-2">
+  <div class="d-flex align-items-center ms-2">
+    <h1 class="me-2 text-white"><%= link_to "MyCinema", root_path %></h1>
+      <i class="fa-sharp fa-solid fa-film fa-2xl text-white"></i>
+  </div>
+  <div class="d-flex justify-content-between align-items-center">
+    <form class="me-3" action="/" method="get">
+      <input type="text" class="py-2 me-2 rounded-1" name="search" value="<%= params[:search] %>">
+      <input class="px-2 py-2" type="submit">
+    </form>
+    <button type="button" class="btn btn-warning me-2 p-2">
+      <a class="red" href="<%= bookmarks_path %>">Bookmarks</a>
+    </button>
+  <div class="d-flex align-items-center ps-2">
+    <% if user_signed_in? %>
+        <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar ms-3 me-3", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete} %>
+  </div>
+    <% else %>
+      <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+    <% end %>
+
+  </div>
+  </div>
+</div>
