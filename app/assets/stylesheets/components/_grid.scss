@@ -1,0 +1,17 @@
+#grid {
+  display: grid;
+  grid-template-columns: 400px 400px 400px;
+  grid-template-rows: 400px 400px 400px;
+  grid-row-gap: 30px;
+  grid-column-gap: 40px;
+  // background-color: white;
+  padding: 20px;
+}
+
+.grid-card {
+  box-shadow: 0 4px 8px 0 lightgray, 0 6px 12px 0 lightgray;
+}
+.card-textbox {
+  width: 400px;
+  height: 50px;
+}

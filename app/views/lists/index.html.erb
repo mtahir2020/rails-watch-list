@@ -1,53 +1,47 @@
 <div class="banner">
 </div>
 
-<%# https://www.w3schools.com/howto/howto_css_image_overlay_title.asp %>
-<%# Add overlay that changes when hover %>
-<div class="container text-center">
-  <div class="container text-center my-5">
-  <% if user_signed_in? %>
-    <p>Welcome <%= current_user.email %></p>
-  <% end %>
-    <h2 class="pt-1 mb-4 text-white">
-      <span data-controller="typed-js" id="typed-js"></span></h2>
-    <div class="row gy-5">
-      <% @lists.each do |list| %>
-        <div class="col-lg-6 d-flex justify-content-center">
-          <div class="card" style="width: 18rem;">
-            <div class="design position-relative">
-            <%# if statement for cloudinary image tag %>
-              <% if list.photo.attached? == true %>
-                <%= cl_image_tag list.photo.key, class: "card-img-top", alt: list.name %>
-              <% else %>
-                <img src="<%=list.image_url%>" class="card-img-top" alt="<%=list.name%>">
-              <% end %>
-              <div class="overlay position-absolute"></div>
-            </div>
-              <div class="card-body" style="background-color: rgba(253, 1, 80, 0.8)">
-                <p class="card-text fs-5"><%= link_to list.name, list_path(list) %></p>
-              </div>
+<div class="d-flex flex-column align-items-center justify-content-center py-5">
+
+  <h1 CLASS="mb-5">YOUR LISTS</h3>
+  <div id="grid">
+    <% @lists.each do |list| %>
+      <div class="grid-card">
+        <div style="width: 18rem;">
+          <div class=" design position-relative">
+          <%# if statement for cloudinary image tag %>
+            <% if list.photo.attached? == true %>
+              <%= cl_image_tag list.photo.key, :width=>400, :height=>350, :crop=>"fill", alt: list.name %>
+            <% else %>
+              <img src="<%=list.image_url%>", width="400", height="350", alt="<%=list.name%>">
+            <% end %>
+            <div class="overlay position-absolute"></div>
+          </div>
+
+          <div class="card-textbox" style="background-color: rgba(253, 1, 80, 0.8)">
+            <p class="card-text fs-5"><%= link_to list.name, list_path(list) %></p>
           </div>
         </div>
-
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
+</div>
+
 
 
   <div class="d-flex flex-column align-items-center">
     <h2 class="text-white">Create New List</h2>
 
     <div class="form text-black">
-    <%= simple_form_for(@list) do |f| %>
-      <%= f.input :name %>
-      <%= f.input :photo, as: :file %>
-      <%= f.submit %>
-    <% end %>
+      <%= simple_form_for(@list) do |f| %>
+        <%= f.input :name %>
+        <%= f.input :photo, as: :file %>
+        <%= f.submit %>
+      <% end %>
     </div>
 
   </div>
 
-</div>
 
 <%# Search for movies, how to ignore case sensitivity %>
   <%# use ILIKE instead of LIKE %>
