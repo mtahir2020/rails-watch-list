@@ -31,6 +31,8 @@ gem "simple_form", github: "heartcombo/simple_form"
 
 gem 'devise'
 
+gem "geocoder"
+
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"

@@ -9,7 +9,14 @@ class ListsController < ApplicationController
       @lists = List.where("name ILIKE ?", "%#{params[:search]}%")
     else
       @lists = List.all
+      @markers = @lists.geocoded.map do |list|
+        {
+          lat: list.latitude,
+          lng: list.longitude
+        }
+      end
     end
+    
     @list = List.new
   end
 
@@ -55,7 +62,7 @@ class ListsController < ApplicationController
 
   def list_params
     # no longer using :image_url now that we have cloudinary
-    params.require(:list).permit(:name, :photo)
+    params.require(:list).permit(:name, :body, photos: [])
   end
 
 end
